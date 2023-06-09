@@ -1,4 +1,4 @@
-import subprocess
+mport subprocess
 import urllib
 import os
 import pickle
@@ -44,6 +44,10 @@ def main():
     #         padding-bottom: {padding}rem;
     #     }} </style> """, unsafe_allow_html=True)
 
+    # horizontal radios
+    st.write(
+        '<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+
     # load documents
     corpus = load_docs()
 
@@ -62,15 +66,19 @@ def main():
 
     st.markdown('---')
 
-    with st.sidebar:
-        st.title('About')
-        st.write('CISI (Cranfield Information Retrieval System Implementation) adalah koleksi dokumen yang digunakan dalam eksperimen dalam bidang pengambilan informasi.')
-        st.write('Anda dapat mencari dokumen dalam koleksi menggunakan BM25 based Information Retrieval System ini.')
-
     with st.form("search_form"):
         query = st.text_input(
             'Query', 'How much do information retrieval and dissemination systems, as well as automated libraries, cost? Are they worth it to the researcher and to industry?')
         st.caption('no text preprocessing')
+
+        with st.expander("Query Examples"):
+            st.markdown('''
+                        - What systems incorporate multiprogramming or remote stations in information retrieval?  What will be the extent of their use in the future?
+                        - What problems and concerns are there in making up descriptive titles? What difficulties are involved in automatically retrieving articles from approximate titles?
+                        - What is information science?  Give definitions where possible.
+                        - Some Considerations Relating to the Cost-Effectiveness of Online Services in Libraries
+                        - A Fast Procedure for the Calculation of Similarity Coefficients in Automatic Classification
+                        ''')
 
         submitted = st.form_submit_button('Search')
 
@@ -78,7 +86,7 @@ def main():
         if query:
             st.markdown('---')
 
-            col1, col2 = st.columns(2)
+            col1, col2, col3 = st.columns(3)
 
             with col1:
                 st.subheader('BM25 Simple')
@@ -95,14 +103,14 @@ def main():
                     bm25_okapi, query, corpus)
                 st.caption(f'time: {bm25_okapi_time}')
                 print_docs(most_relevant_documents)
-                
-            st.subheader('BM25+')
 
-            bm25_plus_time, most_relevant_documents = search_docs(
-                bm25_plus, query, corpus)
-            st.caption(f'time: {bm25_plus_time}')
-            print_docs(most_relevant_documents)
+            with col3:
+                st.subheader('BM25+')
 
+                bm25_plus_time, most_relevant_documents = search_docs(
+                    bm25_plus, query, corpus)
+                st.caption(f'time: {bm25_plus_time}')
+                print_docs(most_relevant_documents)
         else:
             st.text('add some query')
 
