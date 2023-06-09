@@ -54,6 +54,9 @@ def main():
     # st.header(f':mag_right: {algo}')
     st.header(':mag_right: BM25 based Information Retrieval System')
 
+    st.sidebar.title('About')
+    st.sidebar.write("CISI (Computer and Information Science Index) adalah sebuah kumpulan dokumen dalam bidang ilmu komputer dan ilmu informasi. Dataset CISI digunakan sebagai sumber daya untuk sistem pemulihan informasi berbasis BM25 dalam aplikasi ini. Silakan masukkan pertanyaan Anda pada kolom pencarian dan sistem akan menampilkan dokumen-dokumen yang paling relevan dengan pertanyaan tersebut.")
+
     st.markdown('''
         <a href="https://github.com/tcvieira/bm25-exercise-report" target="_blank" style="text-decoration: none;">
             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="30" height="30" alt="github repository"></img>
