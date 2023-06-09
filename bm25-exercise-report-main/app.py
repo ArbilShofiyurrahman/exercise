@@ -54,9 +54,6 @@ def main():
     # st.header(f':mag_right: {algo}')
     st.header(':mag_right: BM25 based Information Retrieval System')
 
-    st.sidebar.title('About')
-    st.sidebar.write("CISI (Computer and Information Science Index) adalah sebuah kumpulan dokumen dalam bidang ilmu komputer dan ilmu informasi. Dataset CISI digunakan sebagai sumber daya untuk sistem pemulihan informasi berbasis BM25 dalam aplikasi ini. Silakan masukkan pertanyaan Anda pada kolom pencarian dan sistem akan menampilkan dokumen-dokumen yang paling relevan dengan pertanyaan tersebut.")
-
     st.markdown('''
         <a href="https://github.com/tcvieira/bm25-exercise-report" target="_blank" style="text-decoration: none;">
             <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" width="30" height="30" alt="github repository"></img>
@@ -64,6 +61,11 @@ def main():
         ''', unsafe_allow_html=True)
 
     st.markdown('---')
+
+    with st.sidebar:
+        st.title('About')
+        st.write('CISI (Cranfield Information Retrieval System Implementation) adalah koleksi dokumen yang digunakan dalam eksperimen dalam bidang pengambilan informasi.')
+        st.write('Anda dapat mencari dokumen dalam koleksi menggunakan BM25 based Information Retrieval System ini.')
 
     with st.form("search_form"):
         query = st.text_input(
@@ -76,7 +78,7 @@ def main():
         if query:
             st.markdown('---')
 
-            col1, col2, col3 = st.columns(3)
+            col1, col2 = st.columns(2)
 
             with col1:
                 st.subheader('BM25 Simple')
@@ -93,14 +95,14 @@ def main():
                     bm25_okapi, query, corpus)
                 st.caption(f'time: {bm25_okapi_time}')
                 print_docs(most_relevant_documents)
+                
+            st.subheader('BM25+')
 
-            with col3:
-                st.subheader('BM25+')
+            bm25_plus_time, most_relevant_documents = search_docs(
+                bm25_plus, query, corpus)
+            st.caption(f'time: {bm25_plus_time}')
+            print_docs(most_relevant_documents)
 
-                bm25_plus_time, most_relevant_documents = search_docs(
-                    bm25_plus, query, corpus)
-                st.caption(f'time: {bm25_plus_time}')
-                print_docs(most_relevant_documents)
         else:
             st.text('add some query')
 
