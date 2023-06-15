@@ -73,7 +73,7 @@ def main():
 
         with st.expander("Query Examples"):
             st.markdown('''
-                        - What systems incorporate multiprogramming or remote stations in information retrieval?  What will be the extent of their use in the future?
+                        - apa aja
                         - What problems and concerns are there in making up descriptive titles? What difficulties are involved in automatically retrieving articles from approximate titles?
                         - What is information science?  Give definitions where possible.
                         - Some Considerations Relating to the Cost-Effectiveness of Online Services in Libraries
