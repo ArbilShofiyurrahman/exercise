@@ -73,7 +73,7 @@ def main():
 
         with st.expander("Query Examples"):
             st.markdown('''
-                        - apa aja
+                        - apa saja
                         - What problems and concerns are there in making up descriptive titles? What difficulties are involved in automatically retrieving articles from approximate titles?
                         - What is information science?  Give definitions where possible.
                         - Some Considerations Relating to the Cost-Effectiveness of Online Services in Libraries
